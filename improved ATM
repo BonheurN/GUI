@@ -1,0 +1,143 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
+class BankAccount {
+    private double balance;
+
+    public BankAccount(double initialBalance) {
+        balance = initialBalance;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void deposit(double amount) {
+        balance += amount;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > balance) {
+            return false;
+        }
+        balance -= amount;
+        return true;
+    }
+}
+
+public class ATM extends JFrame implements ActionListener {
+    private JLabel label;
+    private JTextField textField;
+    private JButton viewBalanceButton;
+    private JButton withdrawButton;
+    private JButton depositButton;
+    private JButton exitButton;
+    private JTextArea displayArea;
+    private BankAccount account;
+
+    public ATM() {
+        account = new BankAccount(100000.00);
+        ImageIcon image = new ImageIcon("contentrix.jpeg");
+        this.setIconImage(image.getImage());
+
+        setTitle("ATM");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(700, 500);
+        setLayout(new BorderLayout());
+        this.setBackground(Color.LIGHT_GRAY);
+
+        label = new JLabel("Enter amount:");
+        textField = new JTextField(10);
+        label.setForeground(Color.cyan);
+        label.setBackground(Color.LIGHT_GRAY);
+
+        viewBalanceButton = new JButton("View Balance");
+        withdrawButton = new JButton("Withdraw");
+        depositButton = new JButton("Deposit");
+        exitButton = new JButton("Exit");
+
+        displayArea = new JTextArea();
+        displayArea.setEditable(true);
+        displayArea.setBackground(Color.LIGHT_GRAY);
+
+        viewBalanceButton.addActionListener(this);
+        withdrawButton.addActionListener(this);
+        depositButton.addActionListener(this);
+        exitButton.addActionListener(this);
+
+        JPanel panel = new JPanel();
+        panel.add(label);
+        panel.add(textField);
+        panel.add(viewBalanceButton);
+        panel.add(withdrawButton);
+        panel.add(depositButton);
+        panel.add(exitButton);
+        panel.setBackground(new Color(0x12345678));
+        
+
+        this.add(panel, BorderLayout.NORTH);
+        this.add(new JScrollPane(displayArea), BorderLayout.CENTER);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String command = e.getActionCommand();
+        double amount = 0;
+
+        try {
+            if (!textField.getText().isEmpty()) {
+                amount = Double.parseDouble(textField.getText());
+            }
+
+            switch (command) {
+                case "View Balance":
+                    displayArea.setText("Current Balance: $" + account.getBalance());
+                    break;
+
+                case "Withdraw":
+                    if (amount <= 0) {
+                        displayArea.setText("Please enter a positive amount to withdraw.");
+                    } else if (account.withdraw(amount)) {
+                        displayArea.setText("Withdrawal: $" + amount + "\nNew Balance: $" + account.getBalance());
+                    } else {
+                        displayArea.setText("Insufficient balance for withdrawal of $" + amount + ".\nCurrent Balance: $" + account.getBalance());
+                    }
+                    break;
+
+                case "Deposit":
+                    if (amount <= 0) {
+                        displayArea.setText("Please enter a positive amount to deposit.");
+                    } else {
+                        account.deposit(amount);
+                        displayArea.setText("Deposit: $" + amount + "\nNew Balance: $" + account.getBalance());
+                    }
+                    break;
+
+                case "Exit":
+                    System.exit(0);
+                    break;
+            }
+        } catch (NumberFormatException ex) {
+            displayArea.setText("Invalid input. Please enter a valid amount.");
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            ATM atm = new ATM();
+            atm.setVisible(true);
+        });
+    }
+}
