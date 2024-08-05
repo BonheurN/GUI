@@ -1,0 +1,53 @@
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.border.Border;
+
+public class Gym extends JFrame{
+	
+
+
+	public Gym() {
+		this.setSize(500,500);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(new FlowLayout());
+		
+		
+		JPanel panel = new JPanel();
+		panel.setPreferredSize(new Dimension(200,250));
+		panel.setLayout(new FlowLayout());
+		panel.setBackground(Color.lightGray);
+		
+		panel.add(new JButton("1"));
+		panel.add(new JButton("2"));
+		panel.add(new JButton("3"));
+		panel.add(new JButton("4"));
+		panel.add(new JButton("5"));
+		panel.add(new JButton("6"));
+		panel.add(new JButton("7"));
+		panel.add(new JButton("8"));
+		panel.add(new JButton("9"));
+		panel.add(new JButton("10"));
+		panel.add(new JButton("11"));
+		this.add(panel);
+		
+		this.setVisible(true);
+		
+	}
+	
+	public static void main(String[]args) {
+	
+Gym gym = new Gym();
+	}
+}
