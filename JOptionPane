@@ -1,0 +1,30 @@
+import javax.swing.JOptionPane;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+//		JOptionPane.showMessageDialog(null, "HELP! HELP!", "CAUTION", JOptionPane.WARNING_MESSAGE);
+//		JOptionPane.showMessageDialog(null, "Get Education", "ADVICE", JOptionPane.INFORMATION_MESSAGE);
+//		JOptionPane.showMessageDialog(null, "IT IS NOT WORKING", "FAILURE", JOptionPane.ERROR_MESSAGE);
+//		JOptionPane.showMessageDialog(null, "He will have bright future", "PLAIN", JOptionPane.PLAIN_MESSAGE);
+		
+//		 JOptionPane.showMessageDialog(null, "You are awesome dude", "Commending", JOptionPane.YES_NO_CANCEL_OPTION);
+		int response = JOptionPane.showConfirmDialog(null, "Do you have a Job", "CAREER", JOptionPane.YES_NO_CANCEL_OPTION);
+		
+		if(response == JOptionPane.YES_OPTION) {
+			JOptionPane.showMessageDialog(null, "You are employeed!");
+		}
+		else if(response == JOptionPane.NO_OPTION) {
+			JOptionPane.showMessageDialog(null, "You are Unemployeed!");
+		}
+		else if(response == JOptionPane.CANCEL_OPTION) {
+			JOptionPane.showMessageDialog(null, "No answer provided");
+		}
+		else {
+			System.out.println("Invalid input");
+		}
+	}
+
+}
