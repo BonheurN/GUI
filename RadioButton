@@ -1,0 +1,46 @@
+import java.awt.FlowLayout;
+
+import javax.swing.ButtonGroup;
+import javax.swing.JFrame;
+import javax.swing.JRadioButton;
+
+public class RadioBox extends JFrame{
+
+	
+	RadioBox(){
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
+		
+		
+		
+		JRadioButton Hamburgerbutton = new JRadioButton("Hamburger");
+		JRadioButton Pizzabutton = new JRadioButton("Pizza");
+		JRadioButton Hotdogbutton = new JRadioButton("Hotdog");
+		
+		ButtonGroup button = new ButtonGroup();
+		
+		button.add(Hamburgerbutton);
+		button.add(Pizzabutton);
+		button.add(Hotdogbutton);
+		
+		
+		
+		add(Hamburgerbutton);
+		add(Pizzabutton);
+		add(Hotdogbutton);
+		pack();
+		setVisible(true);
+		
+		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	RadioBox radio = new RadioBox();
+	}
+
+}
