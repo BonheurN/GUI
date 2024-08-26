@@ -1,0 +1,73 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JLayer;
+import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.JTextField;
+
+public class Main extends JFrame implements ActionListener{
+		JComboBox combo;	
+	
+	Main(){
+		
+	
+		
+		
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new FlowLayout());
+		
+		String Cars[]= {"Lamborghini", "Supra", "Ferrari", };
+		
+		combo = new JComboBox(Cars);
+		combo.setEditable(true);
+		combo.setFocusable(false);
+		combo.addItem("F150");
+		combo.addItem("Porsche");
+	
+		combo.addActionListener(this);
+		
+		combo.insertItemAt("Prius", 0);
+		combo.setSelectedIndex(0);
+		
+		
+		
+		add(combo);
+		pack();
+		setVisible(true);
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Main main = new Main();
+		
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		if(e.getSource()==combo) {
+			
+			System.out.println(combo.getSelectedItem());
+		}
+		
+	}
+}
